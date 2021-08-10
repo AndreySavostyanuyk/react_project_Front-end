@@ -1,0 +1,189 @@
+.registrationPage_header {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #C5E9FF;
+  position: relative;
+  box-shadow: 1px 7px 20px 0px #777777;
+  
+  h1 {
+    font-weight: 300;
+    font-size: 54px;
+    font-family: "Roboto";
+    font-style: normal;
+    line-height: 42px;
+    color: #000000;
+  }
+
+  img {
+    width: 8%;
+    margin-left: 44px;
+  }
+}
+
+.header_item__text {
+  margin-left: 250px;
+  display: flex;
+  width: 100%;
+  justify-content: start;
+}
+
+.registrationPage_main {
+  height: 85vh;
+  width: 100%;
+  background-color: #C5E9FF;
+  display: flex;
+  justify-content: center;
+}
+
+.main_container{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .main_item__img {
+    width: 25%;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.container_registration {
+  width: 50vw;
+  background-color: #ffffff;
+  border-radius: 4px;
+  margin-left: 55px;
+  max-height: 620px;
+  max-width: 720px;
+
+  h1 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 50px;
+    line-height: 42px;
+    color: #000000;
+    margin-left: 150px;
+  }
+}
+
+.registration_item__data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+
+  .data_item__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+    width: 80%;
+  }
+  
+  span {
+    margin-bottom: 10px;
+  }
+
+  .MuiFormControl-root {
+    width: 100%;
+  }
+}
+
+.data_item_button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+  
+  .button_item{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    margin-top: 20px;
+    width: 80%;
+    
+    .MuiButton-label {
+      text-transform: none;
+    }
+
+    .MuiButtonBase-root {
+      width: 60%;
+    }
+
+    .MuiButton-outlined {
+      width: 190px;
+    }
+
+    .MuiButton-text {
+      width: 117px;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .header_item__text {
+    margin-left: 150px;
+  }
+
+  .registrationPage_header h1 {
+    font-size: 37px; 
+  }
+
+  .container_registration {
+    text-align: center;
+    min-width: 400px;
+    margin: 0px;
+  }
+
+  .container_registration h1 {
+    margin-left: 0px;
+  }
+
+  .registrationPage_main {
+    height: 100vh;
+  }
+
+  .main_container {
+    flex-direction: column;
+  }
+
+  .main_item__img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .header_item__text {
+    margin-left: 70px;
+  }
+
+  .registrationPage_header h1 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header_item__text {
+    margin-left: 25px;
+  }
+
+  .registrationPage_header h1 {
+    font-size: 15px;
+  }
+
+  .container_registration {
+    min-width: 280px;
+  }
+
+  .container_registration h1 {
+    font-size: 35px;
+  }
+}

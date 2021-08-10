@@ -1,14 +1,24 @@
 import React, {useState, useEffect} from 'react';
+import { 
+  Switch, 
+  Route, 
+  Link, 
+  Redirect 
+} from 'react-router-dom';
+import axios from 'axios';
+import RegistrationPage from './components/Registration/RegistrationPage';
+import Home from './components/Home/Home';
 import './App.scss';
-import axios from 'axios'
 
 const App = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>React</h1>
-      </header>
+      <Switch>
+        <Route path='/registration' component={RegistrationPage} />
+        <Route path='/home' component={Home} />
+        <Redirect from='/' to='/registration' />
+      </Switch>
     </div>
   );
 }
