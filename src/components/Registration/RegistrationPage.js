@@ -7,11 +7,14 @@ import Logo from '../../source/images/Logo.svg';
 import Background from '../../source/images/background.svg';
 import './RegistrationPage.scss';
 
-const RegistrationPage = ({ open, setOpen, textSnackbar, setTextSnackbar, openError, setOpenError }) => {
+const RegistrationPage = () => {
   const [users, setUsers] = React.useState([])
   const [textLogin, setTextLogin] = React.useState('');
   const [textPassword, setTextPassword] = React.useState('');
   const [textRepeatPassword, setTextRepeatPassword] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+  const [openError, setOpenError] = React.useState(false);
+  const [textSnackbar, setTextSnackbar] = React.useState("");
 
   const history = useHistory();
 

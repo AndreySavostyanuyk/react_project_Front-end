@@ -12,7 +12,6 @@ import {
   Snackbar,
  } from '@material-ui/core'; 
 import MuiAlert from '@material-ui/lab/Alert';
-import '../../../App.scss';
 
 const Alert = (props) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
