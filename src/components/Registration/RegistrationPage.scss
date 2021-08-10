@@ -45,17 +45,18 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 8%;
-  height: 55vh;
+
+  .main_item__img {
+    width: 25%;
+  }
 
   img {
-    width: 500px;
+    width: 100%;
   }
 }
 
 .container_registration {
   width: 50vw;
-  height: 43vw;
   background-color: #ffffff;
   border-radius: 4px;
   margin-left: 55px;
@@ -69,7 +70,7 @@
     font-size: 50px;
     line-height: 42px;
     color: #000000;
-    margin-right: 150px;
+    margin-left: 150px;
   }
 }
 
@@ -87,7 +88,6 @@
     width: 80%;
   }
   
-
   span {
     margin-bottom: 10px;
   }
@@ -95,13 +95,13 @@
   .MuiFormControl-root {
     width: 100%;
   }
-
 }
 
 .data_item_button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 25px;
   
   .button_item{
     display: flex;
@@ -125,5 +125,66 @@
     .MuiButton-text {
       width: 117px;
     }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .header_item__text {
+    margin-left: 150px;
+  }
+
+  .registrationPage_header h1 {
+    font-size: 37px; 
+  }
+
+  .container_registration {
+    text-align: center;
+    min-width: 400px;
+    margin: 0px;
+  }
+
+  .container_registration h1 {
+    margin-left: 0px;
+  }
+
+  .registrationPage_main {
+    height: 100vh;
+  }
+
+  .main_container {
+    flex-direction: column;
+  }
+
+  .main_item__img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .header_item__text {
+    margin-left: 70px;
+  }
+
+  .registrationPage_header h1 {
+    font-size: 30px;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .header_item__text {
+    margin-left: 25px;
+  }
+
+  .registrationPage_header h1 {
+    font-size: 15px;
+  }
+
+  .container_registration {
+    min-width: 280px;
+  }
+
+  .container_registration h1 {
+    font-size: 35px;
   }
 }

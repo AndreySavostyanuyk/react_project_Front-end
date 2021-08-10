@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './App.scss';
 import { 
   Button,  
   FormControl, 
@@ -13,22 +12,13 @@ import {
   Snackbar,
  } from '@material-ui/core'; 
 import MuiAlert from '@material-ui/lab/Alert';
+import '../../../App.scss';
 
-function Alert(props) {
+const Alert = (props) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
-
 const SuccessMessage = ({ textSnackbar, open, setOpen, openError, setOpenError, openInfo, setOpenInfo }) => {
-  const classes = useStyles();
   
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -36,7 +26,6 @@ const SuccessMessage = ({ textSnackbar, open, setOpen, openError, setOpenError, 
     }
     setOpen(false);
     setOpenError(false);
-    // setOpenInfo(false);
   };
 
   return (
@@ -51,11 +40,6 @@ const SuccessMessage = ({ textSnackbar, open, setOpen, openError, setOpenError, 
             {textSnackbar}
           </Alert>
         </Snackbar>
-        {/* <Snackbar open={openInfo} autoHideDuration={1500} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="info">
-          {textSnackbar}
-          </Alert>
-        </Snackbar> */}
     </div>
   );
 }
