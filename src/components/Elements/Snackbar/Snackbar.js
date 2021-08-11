@@ -10,33 +10,33 @@ import {
   makeStyles,
   withStyles,
   Snackbar,
- } from '@material-ui/core'; 
+} from '@material-ui/core'; 
 import MuiAlert from '@material-ui/lab/Alert';
 
 const Alert = (props) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const SuccessMessage = ({ textSnackbar, open, setOpen, openError, setOpenError, openInfo, setOpenInfo }) => {
+const SuccessMessage = ({ snack, setSnack }) => {
   
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(false);
-    setOpenError(false);
+    setSnack({ open:false, text:snack.text });
+    setSnack({ openError:false, text:snack.text });
   };
 
   return (
     <div>
-        <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
+        <Snackbar open={snack.open} autoHideDuration={1500} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
-            {textSnackbar}
+            { snack.text }
           </Alert>
         </Snackbar>
-        <Snackbar open={openError} autoHideDuration={1500} onClose={handleClose}>
+        <Snackbar open={snack.openError} autoHideDuration={1500} onClose={handleClose}>
           <Alert onClose={handleClose} severity="error">
-            {textSnackbar}
+            { snack.text }
           </Alert>
         </Snackbar>
     </div>

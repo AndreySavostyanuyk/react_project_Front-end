@@ -10,9 +10,7 @@ import './AuthorizationPage.scss';
 const AuthorizationPage = () => {
   const [textLogin, setTextLogin] = React.useState('');
   const [textPassword, setTextPassword] = React.useState('');
-  const [open, setOpen] = React.useState(false);
-  const [openError, setOpenError] = React.useState(false);
-  const [textSnackbar, setTextSnackbar] = React.useState("");
+  const [snack, setSnack] = useState({ open: false, openError: false, text: '' })
 
   const history = useHistory();
 
@@ -38,13 +36,11 @@ const AuthorizationPage = () => {
       }).then(res => {
         setTextLogin("");
         setTextPassword("");
-        setTextSnackbar("авторизация прошла успешно");
-        history.push('/home')
-        setOpen(true);
-      }) 
+        setSnack({ open:true, text:"запись успешно дабавлена" });
+        history.push('/home');
+      }); 
     } else {
-      setTextSnackbar("Введите значение");
-      setOpenError(true);
+      setSnack({ openError:true, text:"Введите значение" });
     }
   };
 
@@ -87,19 +83,16 @@ const AuthorizationPage = () => {
             </div>
             <div className="data_item_button">
               <div className="button_item">
-              <Button variant="outlined" onClick={() => login()}>Войти</Button>
-              <Link to="/registration"><Button>Зарегистрироваться</Button></Link>
+                <Button variant="outlined" onClick={() => login()}>Войти</Button>
+                <Link to="/registration" className="item_link">Зарегистрироваться</Link>
               </div>
             </div>
           </div>
         </div>
       </main>
       <Snackbar 
-        openError={openError} 
-        setOpenError={setOpenError} 
-        open={open} 
-        setOpen={setOpen} 
-        textSnackbar={textSnackbar} 
+        snack={snack}
+        setSnack={setSnack}
       />
     </div>
   );

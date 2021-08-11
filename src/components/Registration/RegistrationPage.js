@@ -12,9 +12,7 @@ const RegistrationPage = () => {
   const [textLogin, setTextLogin] = React.useState('');
   const [textPassword, setTextPassword] = React.useState('');
   const [textRepeatPassword, setTextRepeatPassword] = React.useState('');
-  const [open, setOpen] = React.useState(false);
-  const [openError, setOpenError] = React.useState(false);
-  const [textSnackbar, setTextSnackbar] = React.useState("");
+  const [snack, setSnack] = useState({ open: false, openError: false, text: '' })
 
   const history = useHistory();
 
@@ -48,13 +46,11 @@ const RegistrationPage = () => {
         setTextLogin("");
         setTextPassword("");
         setTextRepeatPassword("");
-        setTextSnackbar("запись успешно дабавлена");
-        setOpen(true);
+        setSnack({open:true, text:"запись успешно дабавлена"});
         setUsers(res.data.data);
       }) 
     } else {
-      setTextSnackbar("Введите значение");
-      setOpenError(true);
+      setSnack({ openError:true, text:"Введите значение" });
     }
   };
 
@@ -107,19 +103,16 @@ const RegistrationPage = () => {
             </div>
             <div className="data_item_button">
               <div className="button_item">
-              <Button variant="outlined" onClick={() => addNewUser()}>Зарегистрироваться</Button>
-              <Link to="/authorization"><Button>Авторизоваться</Button></Link>
+                <Button variant="outlined" onClick={() => addNewUser()}>Зарегистрироваться</Button>
+                <Link to="/authorization" className="item_link">Авторизоваться</Link>
               </div>
             </div>
           </div>
         </div>
       </main>
       <Snackbar 
-        openError={openError} 
-        setOpenError={setOpenError} 
-        open={open} 
-        setOpen={setOpen} 
-        textSnackbar={textSnackbar} 
+        snack={snack}
+        setSnack={setSnack}
       />
     </div>
   );

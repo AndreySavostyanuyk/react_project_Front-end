@@ -109,6 +109,12 @@
     align-items:flex-end;
     margin-top: 20px;
     width: 80%;
+
+    .item_link {
+      text-decoration: none;
+      margin-top: 20px;
+      color: black;
+    }
     
     .MuiButton-label {
       text-transform: none;
