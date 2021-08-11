@@ -1,0 +1,40 @@
+.homePage_header {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-between;
+  background-color: #C5E9FF;
+  position: relative;
+  box-shadow: 1px 7px 20px 0px #777777;
+
+  .header_item {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .MuiButtonBase-root {
+    margin-right: 44px;
+  }
+  
+  h1 {
+    font-weight: 300;
+    font-size: 54px;
+    font-family: "Roboto";
+    font-style: normal;
+    line-height: 42px;
+    color: #000000;
+  }
+
+  img {
+    margin-left: 44px;
+  }
+}
+
+.header_item__text {
+  margin-left: 250px;
+  display: flex;
+  width: 100%;
+  justify-content: start;
+}

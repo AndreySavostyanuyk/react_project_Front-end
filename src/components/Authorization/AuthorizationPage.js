@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 import { makeStyles, TextField, Button } from '@material-ui/core';
 import Snackbar from '../Elements/Snackbar/Snackbar';
 import Logo from '../../source/images/Logo.svg';
 import Background from '../../source/images/background.svg';
-import './RegistrationPage.scss';
+import './AuthorizationPage.scss';
 
-const RegistrationPage = () => {
-  const [users, setUsers] = React.useState([])
+const AuthorizationPage = () => {
   const [textLogin, setTextLogin] = React.useState('');
   const [textPassword, setTextPassword] = React.useState('');
-  const [textRepeatPassword, setTextRepeatPassword] = React.useState('');
   const [snack, setSnack] = useState({ open: false, openError: false, text: '' })
 
   const history = useHistory();
@@ -24,31 +22,23 @@ const RegistrationPage = () => {
     setTextPassword(event);
   };
 
-  const handleChangeRepeatPassword = (event) => {
-    setTextRepeatPassword(event);
-  };
-
-  const addNewUser= () => {
+  const login = () => {
     const regexp =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
-    if (textPassword === textRepeatPassword 
-        && textLogin.trim() 
+    if (textLogin.trim() 
         && textPassword.trim() 
-        && textRepeatPassword.trim() 
         && textLogin.length >= 6
         && regexp.test(textPassword)
       ) {
-      axios.post('http://localhost:8000/createUsers', {
-      login: textLogin.trim(),
-      password: textPassword.trim()
+      axios.post('http://localhost:8000/loginUsers', {
+        login: textLogin.trim(),
+        password: textPassword.trim()
       }).then(res => {
-        history.push('/home')
         setTextLogin("");
         setTextPassword("");
-        setTextRepeatPassword("");
         setSnack({ open: true, text: "запись успешно дабавлена" });
-        setUsers(res.data.data);
-      }) 
+        history.push('/home');
+      }); 
     } else {
       setSnack({ openError: true, text: "Введите значение" });
     }
@@ -56,20 +46,20 @@ const RegistrationPage = () => {
 
   return (
     <div>
-      <header className="registrationPage_header">
+      <header className="authorizationPage_header">
         <img src={Logo} /> 
         <div className="header_item__text">
-          <h1>Зарегистрироваться в системе</h1>
+          <h1>Войти в систему</h1>
         </div>
       </header>
-      <main className="registrationPage_main">
+      <main className="authorizationPage_main">
         <div className="main_container">
           <div className="main_item__img">
             <img src={Background} /> 
           </div>
-          <div className="container_registration">
-            <h1>Регистрация</h1>
-            <div className="registration_item__data">
+          <div className="container_authorization">
+            <h1>Войти в систему</h1>
+            <div className="authorization_item__data">
               <div className="data_item__text">
                 <span>Login:</span>
                 <TextField 
@@ -90,21 +80,11 @@ const RegistrationPage = () => {
                   onChange={(e) => handleChangePassword(e.target.value)} 
                 />
               </div>
-              <div className="data_item__text">
-                <span>Repeat password:</span>
-                <TextField 
-                  id="outlined-basic" 
-                  label="Repeat password" 
-                  variant="outlined" 
-                  value={textRepeatPassword} 
-                  onChange={(e) => handleChangeRepeatPassword(e.target.value)} 
-                />
-              </div>
             </div>
             <div className="data_item_button">
               <div className="button_item">
-                <Button variant="outlined" onClick={() => addNewUser()}>Зарегистрироваться</Button>
-                <Link to="/authorization" className="item_link">Авторизоваться</Link>
+                <Button variant="outlined" onClick={() => login()}>Войти</Button>
+                <Link to="/registration" className="item_link">Зарегистрироваться</Link>
               </div>
             </div>
           </div>
@@ -118,4 +98,4 @@ const RegistrationPage = () => {
   );
 }
 
-export default RegistrationPage;
+export default AuthorizationPage;

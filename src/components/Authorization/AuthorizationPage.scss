@@ -1,4 +1,4 @@
-.registrationPage_header {
+.authorizationPage_header {
   width: 100%;
   height: 15vh;
   display: flex;
@@ -31,7 +31,7 @@
   justify-content: start;
 }
 
-.registrationPage_main {
+.authorizationPage_main {
   height: 85vh;
   width: 100%;
   background-color: #C5E9FF;
@@ -55,13 +55,14 @@
   }
 }
 
-.container_registration {
+.container_authorization {
   width: 50vw;
   background-color: #ffffff;
   border-radius: 4px;
   margin-left: 55px;
   max-height: 620px;
   max-width: 720px;
+  text-align: center;
 
   h1 {
     font-family: 'Roboto';
@@ -70,11 +71,10 @@
     font-size: 50px;
     line-height: 42px;
     color: #000000;
-    margin-left: 150px;
   }
 }
 
-.registration_item__data {
+.authorization_item__data {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,6 +102,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 25px;
+  margin-top: 50px;
   
   .button_item{
     display: flex;
@@ -129,7 +130,7 @@
     }
 
     .MuiButton-text {
-      width: 117px;
+      width: 140px;
     }
   }
 }
@@ -139,21 +140,21 @@
     margin-left: 150px;
   }
 
-  .registrationPage_header h1 {
+  .authorizationPage_header h1 {
     font-size: 37px; 
   }
 
-  .container_registration {
+  .container_authorization {
     text-align: center;
     min-width: 400px;
     margin: 0px;
   }
 
-  .container_registration h1 {
+  .container_authorization h1 {
     margin-left: 0px;
   }
 
-  .registrationPage_main {
+  .authorizationPage_main {
     height: 100vh;
   }
 
@@ -171,7 +172,7 @@
     margin-left: 70px;
   }
 
-  .registrationPage_header h1 {
+  .authorizationPage_header h1 {
     font-size: 30px;
   }
 }
@@ -181,15 +182,15 @@
     margin-left: 25px;
   }
 
-  .registrationPage_header h1 {
+  .authorizationPage_header h1 {
     font-size: 15px;
   }
 
-  .container_registration {
+  .container_authorization {
     min-width: 280px;
   }
 
-  .container_registration h1 {
+  .container_authorization h1 {
     font-size: 35px;
   }
 }
