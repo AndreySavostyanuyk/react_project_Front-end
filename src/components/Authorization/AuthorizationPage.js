@@ -36,11 +36,11 @@ const AuthorizationPage = () => {
       }).then(res => {
         setTextLogin("");
         setTextPassword("");
-        setSnack({ open:true, text:"запись успешно дабавлена" });
+        setSnack({ open: true, text: "запись успешно дабавлена" });
         history.push('/home');
       }); 
     } else {
-      setSnack({ openError:true, text:"Введите значение" });
+      setSnack({ openError: true, text: "Введите значение" });
     }
   };
 

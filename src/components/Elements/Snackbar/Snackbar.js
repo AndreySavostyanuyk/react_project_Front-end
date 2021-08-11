@@ -23,20 +23,20 @@ const SuccessMessage = ({ snack, setSnack }) => {
     if (reason === 'clickaway') {
       return;
     }
-    setSnack({ open:false, text:snack.text });
-    setSnack({ openError:false, text:snack.text });
+    setSnack({ open: false, text: snack.text });
+    setSnack({ openError: false, text: snack.text });
   };
 
   return (
     <div>
         <Snackbar open={snack.open} autoHideDuration={1500} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
-            { snack.text }
+            {snack.text}
           </Alert>
         </Snackbar>
         <Snackbar open={snack.openError} autoHideDuration={1500} onClose={handleClose}>
           <Alert onClose={handleClose} severity="error">
-            { snack.text }
+            {snack.text}
           </Alert>
         </Snackbar>
     </div>

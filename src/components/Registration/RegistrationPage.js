@@ -46,11 +46,11 @@ const RegistrationPage = () => {
         setTextLogin("");
         setTextPassword("");
         setTextRepeatPassword("");
-        setSnack({open:true, text:"запись успешно дабавлена"});
+        setSnack({ open: true, text: "запись успешно дабавлена" });
         setUsers(res.data.data);
       }) 
     } else {
-      setSnack({ openError:true, text:"Введите значение" });
+      setSnack({ openError: true, text: "Введите значение" });
     }
   };
 
