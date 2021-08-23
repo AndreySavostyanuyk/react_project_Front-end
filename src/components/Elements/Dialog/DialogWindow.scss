@@ -1,0 +1,52 @@
+.MuiDialogTitle-root {
+
+  h2 {
+    font-size: 2.25rem;
+  }
+}
+
+.MuiDialogContent-root {
+  box-shadow: 4px 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 25px 24px;
+
+  .data_item__text {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    span {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.MuiDialog-container {
+
+  .MuiPaper-root {
+    width: 50%;
+    height: 70%;
+
+    .MuiDialogActions-root{
+      padding: 31px;
+    }
+  }
+}
+
+.MuiButtonBase-root {
+
+  span {
+    text-transform: capitalize;
+  }
+}
+
+.MuiDialogActions-root {
+
+  .MuiButtonBase-root {
+    padding: 5px 45px;
+  }
+
+  .button-save {
+    background: #C5E9FF;
+  }
+}
+

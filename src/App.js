@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { 
   Switch, 
   Route, 
-  Link, 
   Redirect 
 } from 'react-router-dom';
-import axios from 'axios';
 import RegistrationPage from './components/Registration/RegistrationPage';
 import AuthorizationPage from './components/Authorization/AuthorizationPage';
 import Home from './components/Home/Home';

@@ -10,8 +10,7 @@ import './AuthorizationPage.scss';
 const AuthorizationPage = () => {
   const [textLogin, setTextLogin] = React.useState('');
   const [textPassword, setTextPassword] = React.useState('');
-  const [snack, setSnack] = useState({ open: false, openError: false, text: '' })
-
+  const [snack, setSnack] = useState({ open: false, openError: false, text: '' });
   const history = useHistory();
 
   const handleChangeLogin = (event) => {
@@ -36,9 +35,15 @@ const AuthorizationPage = () => {
       }).then(res => {
         setTextLogin("");
         setTextPassword("");
-        setSnack({ open: true, text: "запись успешно дабавлена" });
+        setSnack({ open:true, text:"запись успешно дабавлена" });
+        localStorage.setItem('token', res.data.token);
         history.push('/home');
-      }); 
+      }) 
+      .catch((error) => {
+        if (error.response) {
+          setSnack({ openError: true, text: error.response.data });
+        }
+      })
     } else {
       setSnack({ openError: true, text: "Введите значение" });
     }
@@ -74,6 +79,7 @@ const AuthorizationPage = () => {
                 <span>Password:</span>
                 <TextField 
                   id="outlined-basic" 
+                  type="password"
                   label="Password" 
                   variant="outlined" 
                   value={textPassword} 

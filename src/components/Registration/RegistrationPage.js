@@ -13,7 +13,6 @@ const RegistrationPage = () => {
   const [textPassword, setTextPassword] = React.useState('');
   const [textRepeatPassword, setTextRepeatPassword] = React.useState('');
   const [snack, setSnack] = useState({ open: false, openError: false, text: '' })
-
   const history = useHistory();
 
   const handleChangeLogin = (event) => {
@@ -28,7 +27,7 @@ const RegistrationPage = () => {
     setTextRepeatPassword(event);
   };
 
-  const addNewUser= () => {
+  const addNewUser = () => {
     const regexp =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
     if (textPassword === textRepeatPassword 
@@ -42,11 +41,12 @@ const RegistrationPage = () => {
       login: textLogin.trim(),
       password: textPassword.trim()
       }).then(res => {
-        history.push('/home')
         setTextLogin("");
         setTextPassword("");
         setTextRepeatPassword("");
         setSnack({ open: true, text: "запись успешно дабавлена" });
+        localStorage.setItem('token', res.data.token);
+        history.push('/home')
         setUsers(res.data.data);
       }) 
     } else {
@@ -74,7 +74,7 @@ const RegistrationPage = () => {
                 <span>Login:</span>
                 <TextField 
                   id="outlined-basic" 
-                  label="Login" 
+                  label="Login"
                   variant="outlined" 
                   value={textLogin} 
                   onChange={(e) => handleChangeLogin(e.target.value)} 
@@ -84,6 +84,7 @@ const RegistrationPage = () => {
                 <span>Password:</span>
                 <TextField 
                   id="outlined-basic" 
+                  type="password"
                   label="Password" 
                   variant="outlined" 
                   value={textPassword} 
@@ -94,6 +95,7 @@ const RegistrationPage = () => {
                 <span>Repeat password:</span>
                 <TextField 
                   id="outlined-basic" 
+                  type="password"
                   label="Repeat password" 
                   variant="outlined" 
                   value={textRepeatPassword} 

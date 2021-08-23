@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 20vh;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+  .MuiButtonBase-root {
+    padding: 17px 50px;
+    margin-top: 25px;
+    background-color: #ffffff;
+  }
+
+  .MuiButton-root:hover {
+    background-color: #ffffff;
+  }
+
+  .data_item__text {
+    display: flex;
+    flex-direction: column;
+
+    .MuiInput-underline:hover:not(.Mui-disabled):before {
+      border-bottom: 0 ;
+    }
+
+    .MuiInputBase-input {
+      padding: 21.5px 5px;
+    }
+
+    .MuiInputBase-root {
+      height: 60px;
+      width: 335px;
+      border-radius: 4px;
+      background-color: #ffffff;
+
+      .MuiNativeSelect-select:focus {
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+
+
+    .MuiInput-underline:before {
+      border: 1px solid #ced4da;
+      height: 60px;
+      width: 335px;
+      border-radius: 4px;
+    }
+
+    .MuiInput-underline:after {
+      border: 1px solid #ced4da;
+    }
+
+    span {
+      margin-bottom: 10px;
+    }
+  }
+}
