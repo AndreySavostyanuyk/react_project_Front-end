@@ -1,16 +1,5 @@
-import React, { useEffect } from 'react';
-import { 
-  Button,  
-  FormControl, 
-  InputBase, 
-  NativeSelect, 
-  Select, 
-  MenuItem, 
-  InputLabel, 
-  makeStyles,
-  withStyles,
-  Snackbar,
-} from '@material-ui/core'; 
+import React from 'react';
+import { Snackbar } from '@material-ui/core'; 
 import MuiAlert from '@material-ui/lab/Alert';
 
 const Alert = (props) => {
@@ -29,16 +18,16 @@ const SuccessMessage = ({ snack, setSnack }) => {
 
   return (
     <div>
-        <Snackbar open={snack.open} autoHideDuration={1500} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="success">
-            {snack.text}
-          </Alert>
-        </Snackbar>
-        <Snackbar open={snack.openError} autoHideDuration={1500} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="error">
-            {snack.text}
-          </Alert>
-        </Snackbar>
+      <Snackbar open={snack.open} autoHideDuration={1500} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          {snack.text}
+        </Alert>
+      </Snackbar>
+      <Snackbar open={snack.openError} autoHideDuration={1500} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          {snack.text}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

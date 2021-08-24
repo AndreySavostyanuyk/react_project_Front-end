@@ -1,0 +1,46 @@
+.item_addFilter__date {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin:0px 10px 0px 10px;
+  }
+}
+
+.filter_date {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 50px;
+
+  img {
+    width: 3%;
+  }
+
+  .MuiButtonBase-root {
+    padding: 17px;
+    width: 25%;
+    background-color: #ffffff;
+  }
+
+  .item_date {
+    display: flex;
+    align-items: center;
+    width: 25%;
+
+    .MuiFormControl-root {
+      width: 100%;
+    }
+
+    .MuiInputBase-root {
+      height: 60px;
+      width: 100%;
+      border-radius: 4px;
+      background-color: #ffffff;
+    }
+
+    span {
+      margin-right: 10px;
+    }
+  }
+}

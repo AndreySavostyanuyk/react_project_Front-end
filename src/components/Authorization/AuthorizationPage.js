@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { makeStyles, TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import Snackbar from '../Elements/Snackbar/Snackbar';
 import Logo from '../../source/images/Logo.svg';
 import Background from '../../source/images/background.svg';
@@ -10,8 +10,7 @@ import './AuthorizationPage.scss';
 const AuthorizationPage = () => {
   const [textLogin, setTextLogin] = React.useState('');
   const [textPassword, setTextPassword] = React.useState('');
-  const [snack, setSnack] = useState({ open: false, openError: false, text: '' })
-
+  const [snack, setSnack] = useState({ open: false, openError: false, text: '' });
   const history = useHistory();
 
   const handleChangeLogin = (event) => {
@@ -37,8 +36,9 @@ const AuthorizationPage = () => {
         setTextLogin("");
         setTextPassword("");
         setSnack({ open: true, text: "запись успешно дабавлена" });
+        localStorage.setItem('token', res.data.token);
         history.push('/home');
-      }); 
+      }) 
     } else {
       setSnack({ openError: true, text: "Введите значение" });
     }
@@ -74,6 +74,7 @@ const AuthorizationPage = () => {
                 <span>Password:</span>
                 <TextField 
                   id="outlined-basic" 
+                  type="password"
                   label="Password" 
                   variant="outlined" 
                   value={textPassword} 
