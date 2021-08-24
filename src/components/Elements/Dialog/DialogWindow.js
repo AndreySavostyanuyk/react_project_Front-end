@@ -13,7 +13,7 @@ import {
 import Snackbar from '../Snackbar/Snackbar';
 import './DialogWindow.scss';
 
-const DialogWindow = ({setRecords, openDialog, setOpenDialog, item, textIndex, setTextIndex, records, arrayDoctros}) => {
+const DialogWindow = ({ setRecords, openDialog, setOpenDialog, item, textIndex, setTextIndex, records, arrayDoctros }) => {
   const [changeTextName, setChangeTextName] = useState('');
   const [changeTextDoctor, setChangeTextDoctor] = useState('');
   const [changeDate, setChangeDate] = useState('');
@@ -26,7 +26,7 @@ const DialogWindow = ({setRecords, openDialog, setOpenDialog, item, textIndex, s
     setChangeTextDoctor(doctor);
     setChangeDate(date);
     setChangetextСomplaints(complaints);
-  },[item]);
+  }, [item]);
   
   const handleClose = () => {
     setTextIndex("");
@@ -107,12 +107,9 @@ const DialogWindow = ({setRecords, openDialog, setOpenDialog, item, textIndex, s
                 onChange={(e) => handleChangeDoctor(e.target.value)}
                 input={<Input />}
               >
-                <option aria-label="None" value="" />
-                { arrayDoctros.map((value, index) => {
-                  return (
-                    <option value={value}>{value}</option>
-                  )
-                })
+                { arrayDoctros.map((value) => 
+                  <option value={value}>{value}</option>
+                )
                 }
               </NativeSelect>
             </div>

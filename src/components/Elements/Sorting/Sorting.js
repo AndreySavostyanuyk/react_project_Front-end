@@ -3,9 +3,10 @@ import { Input, NativeSelect } from '@material-ui/core';
 import Add from '../../../source/images/Add.svg';
 import './Sorting.scss';
 
-const Sorting = ({ setFlag, flag, setData, data, setFlagFilter }) => {
+const Sorting = ({ setFlag, records, flag, setData, data, setFlagFilter }) => {
   const [textSort, setTextSort] = useState('');
   const arraySortName = [
+    "",
     "Name",
     "Doctor",
     "Date"
@@ -16,12 +17,8 @@ const Sorting = ({ setFlag, flag, setData, data, setFlagFilter }) => {
   ];
 
   const compareNames = (event) => {
-    setFlag(true)
+    setFlag(event ? true : false);
     setTextSort(event);
-  
-    if (!event){
-      setFlag(false);
-    } 
   }
 
   const compareDirection = (event) => {
@@ -132,12 +129,9 @@ const Sorting = ({ setFlag, flag, setData, data, setFlagFilter }) => {
           id="demo-customized-select-native"
           onChange={(e) => compareNames(e.target.value)}
           input={<Input />}>
-          <option aria-label="None" value="" />
-          { arraySortName.map((value, index) => {
-            return (
-              <option value={value}>{value}</option>
-            )
-          })
+          { arraySortName.map((value) => 
+            <option value={value}>{value}</option>
+          )
           }
         </NativeSelect>
           { textSort && 
@@ -146,15 +140,10 @@ const Sorting = ({ setFlag, flag, setData, data, setFlagFilter }) => {
               <NativeSelect
                 id="demo-customized-select-native"
                 onChange={(e) => compareDirection(e.target.value)}
-                // value={age}
-                // onChange={handleChange}
                 input={<Input />}>
-                <option aria-label="None" defaultValue="" />
-                { arraySortDirection.map((value, index) => {
-                  return (
-                    <option value={value}>{value}</option>
-                  )
-                })
+                { arraySortDirection.map((value) => 
+                  <option value={value}>{value}</option>
+                )
                 }
               </NativeSelect>  
             </div>

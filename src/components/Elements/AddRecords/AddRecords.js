@@ -21,7 +21,7 @@ const AddRecords = ({ setRecords, arrayDoctros }) => {
       && textDoctor.trim() 
       && textСomplaints.trim()
       && date.trim()
-    ){
+    ) {
       axios.post('http://localhost:8000/createRecords', {
       token: localStorage.getItem('token'),
       name: textName.trim(),
@@ -74,12 +74,9 @@ const AddRecords = ({ setRecords, arrayDoctros }) => {
             onChange={(e) => setTextDoctor(e.target.value)}
             input={<Input />}
           >
-            <option aria-label="None" value="" />
-            { arrayDoctros.map((value, index) => {
-              return (
-                <option value={value}>{value}</option>
-              )
-            })
+            { arrayDoctros.map((value) => 
+              <option value={value}>{value}</option>
+            )
             }
           </NativeSelect>
         </div>

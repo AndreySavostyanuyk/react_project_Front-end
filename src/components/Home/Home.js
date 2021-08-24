@@ -18,11 +18,15 @@ const Home = () => {
   const [flagFilter, setFlagFilter] = useState(false);
   const [flag, setFlag] = useState(false);
   const arrayDoctros = [
+    "",
     "Иван Иванович",
     "Дмитрий Дмитриевич",
     "Николай Николаевич"
   ];
   
+  console.log("records",records)
+  console.log("data",data)
+
   useEffect(() => {
     if (!records.length) {
       axios.get('http://localhost:8000/allRecords',{
@@ -30,21 +34,21 @@ const Home = () => {
           "token": localStorage.getItem("token")
         }
       }).then(res => {
-        setRecords(res.data.data);
-        setData(res.data.data)
+        setRecords([...res.data.data]);
+        setData([...res.data.data]);
       })
     }
   }, [records]);
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      history.push('/authorization')
+      history.push('/authorization');
     } 
   }, [localStorage.getItem("token")]);
 
   const clear = () => {
     localStorage.clear();
-    history.push('/authorization')
+    history.push('/authorization');
   }
 
   return (
@@ -65,8 +69,8 @@ const Home = () => {
       <main>
         <div>
           <Sorting 
+            records={records}
             setFlagFilter={setFlagFilter}
-            flag={flag}
             setFlag={setFlag}
             data={data}
             setData={setData}

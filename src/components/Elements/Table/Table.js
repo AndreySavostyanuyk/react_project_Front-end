@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Pagination from '@material-ui/lab/Pagination';
 import Snackbar from '../Snackbar/Snackbar';
 import DialogWindow from '../Dialog/DialogWindow';
 import DialogDelete from '../DialogDelete/DialogDelete';
@@ -39,7 +38,7 @@ const Table = ({ records, setRecords, data, flag, arrayDoctros }) => {
       <table className="table">
         <thead>
           <tr>
-          { arrayHeaderName.map((value, index) => {
+          { arrayHeaderName.map((value) => {
             return (
               <th>{value}</th>
             )
@@ -67,7 +66,6 @@ const Table = ({ records, setRecords, data, flag, arrayDoctros }) => {
                         onClick={() => (handleClickOpen(index), testFunction(value, index)) }
                       />
                     </div>
-                    
                   </td>
                 </tr>
               )
@@ -96,7 +94,6 @@ const Table = ({ records, setRecords, data, flag, arrayDoctros }) => {
               )
             })
           }
-        <Pagination count={10} variant="outlined" shape="rounded" />
         </tbody>
       </table>
       <DialogDelete 
