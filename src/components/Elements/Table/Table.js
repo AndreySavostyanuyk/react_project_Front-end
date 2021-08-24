@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Pagination from '@material-ui/lab/Pagination';
 import Snackbar from '../Snackbar/Snackbar';
 import DialogWindow from '../Dialog/DialogWindow';
 import DialogDelete from '../DialogDelete/DialogDelete';
@@ -6,12 +7,19 @@ import Delete from '../../../source/images/delete.svg';
 import Edit from '../../../source/images/edit.svg';
 import './Table.scss';
 
-const Table = ({ records, setRecords, data, flag }) => {
+const Table = ({ records, setRecords, data, flag, arrayDoctros }) => {
   const [snack, setSnack] = useState({ open: false, openError: false, text: '' });
   const [open, setOpen] = useState(false);
   const [item, setItem] = useState('');
   const [textIndex, setTextIndex] = useState('');
   const [openDialog, setOpenDialog] = useState(false);
+  const arrayHeaderName = [
+    "Имя",
+    "Врач",
+    "Дата",
+    "Жалобы",
+    ""
+  ];
 
   const handleClickOpenDelete = () => {
     setOpen(true);
@@ -31,11 +39,12 @@ const Table = ({ records, setRecords, data, flag }) => {
       <table className="table">
         <thead>
           <tr>
-            <th>Имя</th>
-            <th>Врач</th>
-            <th>Дата</th>
-            <th>Жалобы</th>
-            <th></th>
+          { arrayHeaderName.map((value, index) => {
+            return (
+              <th>{value}</th>
+            )
+          })
+          }
           </tr>
         </thead>
         <tbody>
@@ -51,7 +60,7 @@ const Table = ({ records, setRecords, data, flag }) => {
                     <div className="item_img">
                       <img 
                         src={Delete} 
-                        onClick={() => (handleClickOpenDelete(),testFunction(value, index))}
+                        onClick={() => (handleClickOpenDelete(), testFunction(value, index))}
                       />
                       <img 
                         src={Edit} 
@@ -75,7 +84,7 @@ const Table = ({ records, setRecords, data, flag }) => {
                     <div className="item_img">
                       <img 
                         src={Delete} 
-                        onClick={() => (handleClickOpenDelete(),testFunction(value, index))}
+                        onClick={() => (handleClickOpenDelete(), testFunction(value, index))}
                       />
                       <img 
                         src={Edit} 
@@ -87,7 +96,7 @@ const Table = ({ records, setRecords, data, flag }) => {
               )
             })
           }
-        
+        <Pagination count={10} variant="outlined" shape="rounded" />
         </tbody>
       </table>
       <DialogDelete 
@@ -102,6 +111,7 @@ const Table = ({ records, setRecords, data, flag }) => {
         setSnack={setSnack}
       />
       <DialogWindow
+        arrayDoctros={arrayDoctros}
         records={records}
         item={item}
         textIndex={textIndex}

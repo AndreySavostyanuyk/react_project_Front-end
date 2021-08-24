@@ -6,9 +6,10 @@ import {
   DialogActions, 
   DialogContent, 
   DialogContentText, 
-  DialogTitle  } from '@material-ui/core';
-  import Snackbar from '../Snackbar/Snackbar';
-  import './DialogDelete.scss';
+  DialogTitle  
+} from '@material-ui/core';
+import Snackbar from '../Snackbar/Snackbar';
+import './DialogDelete.scss';
 
 const DialogDelete = ({ open, setOpen, records, setRecords, textIndex }) => {
   const [snack, setSnack] = useState({ open: false, openError: false, text: '' });
@@ -23,11 +24,11 @@ const DialogDelete = ({ open, setOpen, records, setRecords, textIndex }) => {
       setOpen(false);
     })
     .catch((error) => {
-        if (error.status_code == 401) {
+        if (error.status_code === 401) {
           setSnack({ openError: true, text: error.response.data });
           localStorage.clear();
         }
-      }) 
+      }); 
   };
 
   const handleCloseDelete = () => {
@@ -43,14 +44,14 @@ const DialogDelete = ({ open, setOpen, records, setRecords, textIndex }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Удалить прием"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Удалить прием</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Вы действительно хотите удалить прием ? 
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDelete} color="primary" variant="outlined">
+          <Button onClick={() => handleCloseDelete()} color="primary" variant="outlined">
             Cancel
           </Button>
           <Button 

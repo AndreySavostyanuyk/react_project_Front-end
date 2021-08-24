@@ -5,12 +5,11 @@ import {
   Button,
   NativeSelect, 
   Input
-  } from '@material-ui/core';
+} from '@material-ui/core';
 import Snackbar from '../Snackbar/Snackbar';
 import './AddRecords.scss';
 
-
-const AddRecords = ({ setRecords }) => {
+const AddRecords = ({ setRecords, arrayDoctros }) => {
   const [snack, setSnack] = useState({ open: false, openError: false, text: '' });
   const [textName, setTextName] = useState('');
   const [textDoctor, setTextDoctor] = useState('');
@@ -19,15 +18,15 @@ const AddRecords = ({ setRecords }) => {
 
   const addNewRecords = () => {
     if ( textName.trim() 
-        && textDoctor.trim() 
-        && textСomplaints.trim()
-        && date.trim()
-      ) {
+      && textDoctor.trim() 
+      && textСomplaints.trim()
+      && date.trim()
+    ){
       axios.post('http://localhost:8000/createRecords', {
-      userId: localStorage.getItem('token'),
+      token: localStorage.getItem('token'),
       name: textName.trim(),
       doctor: textDoctor.trim(),
-      date: date,
+      date,
       complaints: textСomplaints.trim()
       }).then(res => {
         setTextName("");
@@ -38,30 +37,14 @@ const AddRecords = ({ setRecords }) => {
         setRecords(res.data.data);
       })
       .catch((error) => {
-        if (error.status_code == 401) {
+        if (error.status_code === 401) {
           localStorage.clear();
           setSnack({ openError: true, text: error.response.data });
         }
-      }) 
+      }); 
     } else {
       setSnack({ openError: true, text: "Введите все значения" });
     }
-  };
-
-  const handleChangeName = (event) => {
-    setTextName(event);
-  };
-
-  const handleChangeDoctor = (event) => {
-    setTextDoctor(event);
-  };
-
-  const handleChangeDate = (event) => {
-    setDate(event);
-  };
-
-  const handleChangeСomplaints = (event) => {
-    setTextСomplaints(event);
   };
 
   const addCheck = () => {
@@ -80,7 +63,7 @@ const AddRecords = ({ setRecords }) => {
             id="outlined-basic" 
             variant="outlined" 
             value={textName}
-            onChange={(e) => handleChangeName(e.target.value)}
+            onChange={(e) => setTextName(e.target.value)}
           />
         </div>
         <div className="data_item__text">
@@ -88,13 +71,16 @@ const AddRecords = ({ setRecords }) => {
           <NativeSelect
             value={textDoctor}
             id="demo-customized-select-native"
-            onChange={(e) => handleChangeDoctor(e.target.value)}
+            onChange={(e) => setTextDoctor(e.target.value)}
             input={<Input />}
           >
             <option aria-label="None" value="" />
-            <option value="Иван Иванович">Иван Иванович</option>
-            <option value="Дмитрий Дмитриевич">Дмитрий Дмитриевич</option>
-            <option value="Николай Николаевич">Николай Николаевич</option>
+            { arrayDoctros.map((value, index) => {
+              return (
+                <option value={value}>{value}</option>
+              )
+            })
+            }
           </NativeSelect>
         </div>
         <div className="data_item__text">
@@ -102,7 +88,7 @@ const AddRecords = ({ setRecords }) => {
           <TextField 
             id="outlined-basic" 
             value={date}
-            onChange={(e) => handleChangeDate(e.target.value)}
+            onChange={(e) => setDate(e.target.value)}
             type="date"
             variant="outlined"  
           />
@@ -112,14 +98,14 @@ const AddRecords = ({ setRecords }) => {
           <TextField 
             id="outlined-basic"
             value={textСomplaints}
-            onChange={(e) => handleChangeСomplaints(e.target.value)}
+            onChange={(e) => setTextСomplaints(e.target.value)}
             variant="outlined"  
           />
         </div>
         <Button 
           variant="outlined" 
           onClick={() => addNewRecords()}
-          disabled={!addCheck() ? "disabled" : ''}
+          disabled={!addCheck()}
         >
           Добавить запись
         </Button>
@@ -133,7 +119,3 @@ const AddRecords = ({ setRecords }) => {
 }
 
 export default AddRecords;
-
-
-
-

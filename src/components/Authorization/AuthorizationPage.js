@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { makeStyles, TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import Snackbar from '../Elements/Snackbar/Snackbar';
 import Logo from '../../source/images/Logo.svg';
 import Background from '../../source/images/background.svg';
@@ -35,15 +35,10 @@ const AuthorizationPage = () => {
       }).then(res => {
         setTextLogin("");
         setTextPassword("");
-        setSnack({ open:true, text:"запись успешно дабавлена" });
+        setSnack({ open: true, text: "запись успешно дабавлена" });
         localStorage.setItem('token', res.data.token);
         history.push('/home');
       }) 
-      .catch((error) => {
-        if (error.response) {
-          setSnack({ openError: true, text: error.response.data });
-        }
-      })
     } else {
       setSnack({ openError: true, text: "Введите значение" });
     }

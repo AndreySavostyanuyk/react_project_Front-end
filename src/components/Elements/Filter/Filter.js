@@ -24,13 +24,12 @@ const Filter = ({ records, setData,  setFlag, flagFilter, setFlagFilter }) => {
   const handleClickFilter = () => {
     setFlag(true);
     const date = records.filter(isPrime);
-    setData(date);
+    setData([...date]);
   }
 
   const isPrime = (a) => {
     if (onDate && withDate) {
       if (a.date > withDate && a.date < onDate) {
-        console.log("chtozafignia")
         return true;
       }
     }
@@ -50,7 +49,7 @@ const Filter = ({ records, setData,  setFlag, flagFilter, setFlagFilter }) => {
 
   return (
     <div>
-      { flagFilter ?
+      { flagFilter &&
         <div className="filter_date">
           <div className="item_date">
             <span>c:</span>
@@ -76,8 +75,6 @@ const Filter = ({ records, setData,  setFlag, flagFilter, setFlagFilter }) => {
             onClick={() => (handleClickCloseFilter())}
           />
         </div>
-        :
-        <div></div>
       }
     </div>
   );

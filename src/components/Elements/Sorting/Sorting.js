@@ -5,6 +5,15 @@ import './Sorting.scss';
 
 const Sorting = ({ setFlag, flag, setData, data, setFlagFilter }) => {
   const [textSort, setTextSort] = useState('');
+  const arraySortName = [
+    "Name",
+    "Doctor",
+    "Date"
+  ];
+  const arraySortDirection = [
+    "Asc",
+    "Desc"
+  ];
 
   const compareNames = (event) => {
     setFlag(true)
@@ -17,33 +26,33 @@ const Sorting = ({ setFlag, flag, setData, data, setFlagFilter }) => {
 
   const compareDirection = (event) => {
 
-    if (textSort === "Имени") {
-      if (event === "По возрастанию") {
+    if (textSort === "Name") {
+      if (event === "Asc") {
         const arr = data.sort(compareNamesDesk);
         setData([...arr]);
       }
   
-      if (event === "По убыванию") {
+      if (event === "Desc") {
         const arr = data.sort(compareNamesAsk);
         setData([...arr]);
       }
-    } else if (textSort === "Врачу") {
-      if (event === "По возрастанию") {
+    } else if (textSort === "Doctor") {
+      if (event === "Asc") {
         const arr = data.sort(compareDoctorDesk);
         setData([...arr]);
       }
   
-      if (event === "По убыванию") {
+      if (event === "Desc") {
         const arr = data.sort(compareDoctorAsk);
         setData([...arr]);
       }
-    } else if (textSort === "Дате") {
-      if (event === "По возрастанию") {
+    } else if (textSort === "Date") {
+      if (event === "Asc") {
         const arr = data.sort(compareDateDesk);
         setData([...arr]);
       }
   
-      if (event === "По убыванию") {
+      if (event === "Desc") {
         const arr = data.sort(compareDateAsk);
         setData([...arr]);
       }
@@ -124,11 +133,14 @@ const Sorting = ({ setFlag, flag, setData, data, setFlagFilter }) => {
           onChange={(e) => compareNames(e.target.value)}
           input={<Input />}>
           <option aria-label="None" value="" />
-          <option value="Имени">Имени</option>
-          <option value="Врачу">Врачу</option>
-          <option value="Дате">Дате</option>
+          { arraySortName.map((value, index) => {
+            return (
+              <option value={value}>{value}</option>
+            )
+          })
+          }
         </NativeSelect>
-          { textSort ? 
+          { textSort && 
             <div className="direction">
               <span>Направление:</span>
               <NativeSelect
@@ -138,12 +150,14 @@ const Sorting = ({ setFlag, flag, setData, data, setFlagFilter }) => {
                 // onChange={handleChange}
                 input={<Input />}>
                 <option aria-label="None" defaultValue="" />
-                <option value="По возрастанию">По возрастанию</option>
-                <option value="По убыванию">По убыванию</option>
+                { arraySortDirection.map((value, index) => {
+                  return (
+                    <option value={value}>{value}</option>
+                  )
+                })
+                }
               </NativeSelect>  
             </div>
-            : 
-            <div></div>
           }
           <div className="item_addFilter__date">
             <span>Добавить фильтр по дате:</span>

@@ -17,6 +17,11 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [flagFilter, setFlagFilter] = useState(false);
   const [flag, setFlag] = useState(false);
+  const arrayDoctros = [
+    "Иван Иванович",
+    "Дмитрий Дмитриевич",
+    "Николай Николаевич"
+  ];
   
   useEffect(() => {
     if (!records.length) {
@@ -54,31 +59,33 @@ const Home = () => {
         <Button variant="outlined" onClick={() => clear()}>Выход</Button>
       </header>
       <AddRecords 
-        setRecords = {setRecords}
+        arrayDoctros={arrayDoctros}
+        setRecords={setRecords}
       />
       <main>
         <div>
           <Sorting 
-            setFlagFilter = {setFlagFilter}
-            flag = {flag}
-            setFlag = {setFlag}
-            data = {data}
-            setData = {setData}
+            setFlagFilter={setFlagFilter}
+            flag={flag}
+            setFlag={setFlag}
+            data={data}
+            setData={setData}
           />
           <Filter 
-            setFlagFilter = {setFlagFilter}
-            flagFilter = {flagFilter}
-            records = {records}
-            setData = {setData}
-            setFlag = {setFlag}
+            setFlagFilter={setFlagFilter}
+            flagFilter={flagFilter}
+            records={records}
+            setData={setData}
+            setFlag={setFlag}
           />
         </div>  
         <Table 
-          flag = {flag}
-          data = {data}
-          setData = {setData}
-          records = {records}
-          setRecords = {setRecords}
+          arrayDoctros={arrayDoctros}
+          flag={flag}
+          data={data}
+          setData={setData}
+          records={records}
+          setRecords={setRecords}
         />
       </main>
       <Snackbar 

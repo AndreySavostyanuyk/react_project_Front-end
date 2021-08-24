@@ -8,27 +8,27 @@ import {
   Dialog, 
   DialogActions, 
   DialogContent, 
-  DialogTitle  } from '@material-ui/core';
-  import Snackbar from '../Snackbar/Snackbar';
-  import './DialogWindow.scss';
+  DialogTitle  
+} from '@material-ui/core';
+import Snackbar from '../Snackbar/Snackbar';
+import './DialogWindow.scss';
 
-
-const DialogWindow = ({setRecords, openDialog, setOpenDialog, item, textIndex, setTextIndex, records}) => {
+const DialogWindow = ({setRecords, openDialog, setOpenDialog, item, textIndex, setTextIndex, records, arrayDoctros}) => {
   const [changeTextName, setChangeTextName] = useState('');
   const [changeTextDoctor, setChangeTextDoctor] = useState('');
   const [changeDate, setChangeDate] = useState('');
   const [changetextСomplaints, setChangetextСomplaints] = useState('');
   const [snack, setSnack] = useState({ open: false, openError: false, text: '' });
-
+  const {name, doctor, date, complaints} = item;
+  
   useEffect(() => {
-    setChangeTextName(item.name);
-    setChangeTextDoctor(item.doctor);
-    setChangeDate(item.date);
-    setChangetextСomplaints(item.complaints);
+    setChangeTextName(name);
+    setChangeTextDoctor(doctor);
+    setChangeDate(date);
+    setChangetextСomplaints(complaints);
   },[item]);
   
   const handleClose = () => {
-    console.log(records[textIndex]._id)
     setTextIndex("");
     setOpenDialog(false);
   };
@@ -49,11 +49,12 @@ const DialogWindow = ({setRecords, openDialog, setOpenDialog, item, textIndex, s
   const editRecords = (index) => {
     
     if ( changeTextName.trim() 
-        && changeTextDoctor.trim() 
-        && changetextСomplaints.trim()
-        && changeDate.trim()
-      ) {
-      axios.patch(`http://localhost:8000/editRecords?_id=${records[textIndex]._id}`, {
+      && changeTextDoctor.trim() 
+      && changetextСomplaints.trim()
+      && changeDate.trim()
+    ) {
+      axios.patch('http://localhost:8000/editRecords', {
+      _id: records[textIndex]._id, 
       name: changeTextName.trim(),
       doctor: changeTextDoctor.trim(),
       date: changeDate,
@@ -64,7 +65,6 @@ const DialogWindow = ({setRecords, openDialog, setOpenDialog, item, textIndex, s
           "token": localStorage.getItem("token")
         }
       }).then(res => {
-        console.log("choto");
         setChangeTextName("");
         setChangeTextDoctor("");
         setChangeDate("");
@@ -108,9 +108,12 @@ const DialogWindow = ({setRecords, openDialog, setOpenDialog, item, textIndex, s
                 input={<Input />}
               >
                 <option aria-label="None" value="" />
-                <option value="Иван Иванович">Иван Иванович</option>
-                <option value="Дмитрий Дмитриевич">Дмитрий Дмитриевич</option>
-                <option value="Николай Николаевич">Николай Николаевич</option>
+                { arrayDoctros.map((value, index) => {
+                  return (
+                    <option value={value}>{value}</option>
+                  )
+                })
+                }
               </NativeSelect>
             </div>
             <div className="data_item__text">
@@ -135,7 +138,7 @@ const DialogWindow = ({setRecords, openDialog, setOpenDialog, item, textIndex, s
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} variant="outlined">
+          <Button onClick={() => handleClose()} variant="outlined">
             Cancel
           </Button>
           <Button className="button-save" onClick={() => editRecords(textIndex)}>
