@@ -24,9 +24,6 @@ const Home = () => {
     "Николай Николаевич"
   ];
   
-  console.log("records",records)
-  console.log("data",data)
-
   useEffect(() => {
     if (!records.length) {
       axios.get('http://localhost:8000/allRecords',{
